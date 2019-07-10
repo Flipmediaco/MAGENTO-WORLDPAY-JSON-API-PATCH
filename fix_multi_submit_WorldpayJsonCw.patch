@@ -26,7 +26,7 @@ index c179fe5..90138aa 100644
 +
 +			var submitelement = $('onestepcheckout-place-order');
 +			/* Disable button to avoid multiple clicks */
-+			submitelement.removeClassName('orange').addClassName('grey');
++			submitelement.removeClassName('orange').addClassName('gray');
 +			submitelement.disabled = true;
 +
 +			var loaderelement = new Element('span').
@@ -45,7 +45,7 @@ index c179fe5..90138aa 100644
 +
 +			var submitelement = $('onestepcheckout-place-order');
 +			/* Disable button to avoid multiple clicks */
-+			submitelement.removeClassName('grey').addClassName('orange');
++			submitelement.removeClassName('gray').addClassName('orange');
 +			submitelement.disabled = false;
 +
 +			if($('onestepcheckout-place-order-loading') != undefined) {
