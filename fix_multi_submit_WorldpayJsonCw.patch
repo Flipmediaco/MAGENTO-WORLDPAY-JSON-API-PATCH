@@ -1,0 +1,56 @@
+diff --git a/js/customweb/worldpayjsoncw/checkout.js b/js/customweb/worldpayjsoncw/checkout.js
+index c179fe5..90138aa 100644
+--- a/js/customweb/worldpayjsoncw/checkout.js
++++ b/js/customweb/worldpayjsoncw/checkout.js
+@@ -305,6 +305,13 @@ Customweb.WorldpayJsonCw = Class.create({
+ 
+ 	sendFieldsToUrl : function(url, params)
+ 	{
++		// Catch url undefined caused by double click place order
++		if (typeof url == 'undefined') {
++			alert("Something went wrong, checkout will reload, please try again.");
++			location.reload();
++			return;
++		}
++
+ 		var me = this,
+ 			tmpForm = new Element('form', {
+ 			'action' : url,
+@@ -1107,7 +1114,20 @@ Customweb.WorldpayJsonCw = Class.create({
+ 			var form = $('onestepcheckout-form');
+ 			var formUrl = form.readAttribute('action');
+ 			formUrl = formUrl.slice(0, -1) + '/';
+-			form.writeAttribute('action', 'javascript:void(0);');
++			// This fails due to browser CORS restriction in browser
++			//form.writeAttribute('action', 'javascript:void(0);');
++
++			var submitelement = $('onestepcheckout-place-order');
++			/* Disable button to avoid multiple clicks */
++			submitelement.removeClassName('orange').addClassName('grey');
++			submitelement.disabled = true;
++
++			var loaderelement = new Element('span').
++			addClassName('onestepcheckout-place-order-loading').
++			update('Please wait, processing your order...');
++
++			submitelement.parentNode.appendChild(loaderelement);
++
+ 			var params = Form.serialize(form);
+ 				
+ 			this.refillPaymentForm(this.formFields);
+@@ -1139,6 +1159,15 @@ Customweb.WorldpayJsonCw = Class.create({
+ 	{
+ 		if(Object.keys(errors).length > 0) {
+ 			alert(errors[Object.keys(errors)[0]]);
++
++			var submitelement = $('onestepcheckout-place-order');
++			/* Disable button to avoid multiple clicks */
++			submitelement.removeClassName('grey').addClassName('orange');
++			submitelement.disabled = false;
++
++			if($('onestepcheckout-place-order-loading') != undefined) {
++				$('onestepcheckout-place-order-loading').remove();
++			}
+ 		}
+ 	},
+ 
