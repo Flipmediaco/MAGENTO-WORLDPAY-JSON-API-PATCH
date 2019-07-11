@@ -1,41 +1,41 @@
 diff --git a/app/code/local/Customweb/WorldpayJsonCw/Block/Checkout.php b/app/code/local/Customweb/WorldpayJsonCw/Block/Checkout.php
-index ae1f18d..439013b 100644
+index 439013b..ae1f18d 100644
 --- a/app/code/local/Customweb/WorldpayJsonCw/Block/Checkout.php
 +++ b/app/code/local/Customweb/WorldpayJsonCw/Block/Checkout.php
 @@ -48,31 +48,31 @@ class Customweb_WorldpayJsonCw_Block_Checkout extends Mage_Core_Block_Template {
  	}
  
  	public function getHiddenFieldsUrl(){
--		return Mage::getUrl('worldpayjsoncw/process/getHiddenFields', array(
-+		return Mage::getUrl('WorldpayJsonCw/process/getHiddenFields', array(
+-		return Mage::getUrl('WorldpayJsonCw/process/getHiddenFields', array(
++		return Mage::getUrl('worldpayjsoncw/process/getHiddenFields', array(
  			'_secure' => true 
  		));
  	}
  
  	public function getVisibleFieldsUrl(){
--		return Mage::getUrl('worldpayjsoncw/process/getVisibleFields', array(
-+		return Mage::getUrl('WorldpayJsonCw/process/getVisibleFields', array(
+-		return Mage::getUrl('WorldpayJsonCw/process/getVisibleFields', array(
++		return Mage::getUrl('worldpayjsoncw/process/getVisibleFields', array(
  			'_secure' => true 
  		));
  	}
  
  	public function getAuthorizeUrl(){
--		return Mage::getUrl('worldpayjsoncw/process/authorize', array(
-+		return Mage::getUrl('WorldpayJsonCw/process/authorize', array(
+-		return Mage::getUrl('WorldpayJsonCw/process/authorize', array(
++		return Mage::getUrl('worldpayjsoncw/process/authorize', array(
  			'_secure' => true 
  		));
  	}
  
  	public function getJavascriptUrl(){
--		return Mage::getUrl('worldpayjsoncw/process/ajax', array(
-+		return Mage::getUrl('WorldpayJsonCw/process/ajax', array(
+-		return Mage::getUrl('WorldpayJsonCw/process/ajax', array(
++		return Mage::getUrl('worldpayjsoncw/process/ajax', array(
  			'_secure' => true 
  		));
  	}
  
  	public function getSaveShippingMethodUrl(){
--		return Mage::getUrl('worldpayjsoncw/onepage/saveShippingMethod', array(
-+		return Mage::getUrl('WorldpayJsonCw/onepage/saveShippingMethod', array(
+-		return Mage::getUrl('WorldpayJsonCw/onepage/saveShippingMethod', array(
++		return Mage::getUrl('worldpayjsoncw/onepage/saveShippingMethod', array(
  			'_secure' => true 
  		));
  	}
@@ -43,113 +43,113 @@ index ae1f18d..439013b 100644
  
  	public function getPreloadUrl(){
  		if (version_compare(Mage::getVersion(), '1.8', '>=')) {
--			return Mage::getUrl('worldpayjsoncw/process/preloadOnepage', array(
-+			return Mage::getUrl('WorldpayJsonCw/process/preloadOnepage', array(
+-			return Mage::getUrl('WorldpayJsonCw/process/preloadOnepage', array(
++			return Mage::getUrl('worldpayjsoncw/process/preloadOnepage', array(
  				'_secure' => true 
  			));
  		}
 diff --git a/app/code/local/Customweb/WorldpayJsonCw/Block/ExternalCheckout/Login.php b/app/code/local/Customweb/WorldpayJsonCw/Block/ExternalCheckout/Login.php
-index 4a52afd..308eb86 100644
+index 308eb86..4a52afd 100644
 --- a/app/code/local/Customweb/WorldpayJsonCw/Block/ExternalCheckout/Login.php
 +++ b/app/code/local/Customweb/WorldpayJsonCw/Block/ExternalCheckout/Login.php
 @@ -39,12 +39,12 @@ class Customweb_WorldpayJsonCw_Block_ExternalCheckout_Login extends Mage_Core_Bl
  	
  	public function getLoginPostAction()
  	{
--		return Mage::getUrl('worldpayjsoncw/Externalcheckout/loginPost', array('_secure'=>true));
-+		return Mage::getUrl('WorldpayJsonCw/Externalcheckout/loginPost', array('_secure'=>true));
+-		return Mage::getUrl('WorldpayJsonCw/Externalcheckout/loginPost', array('_secure'=>true));
++		return Mage::getUrl('worldpayjsoncw/Externalcheckout/loginPost', array('_secure'=>true));
  	}
  	
  	public function getRegisterPostAction()
  	{
--		return Mage::getUrl('worldpayjsoncw/Externalcheckout/registerPost', array('_secure'=>true));
-+		return Mage::getUrl('WorldpayJsonCw/Externalcheckout/registerPost', array('_secure'=>true));
+-		return Mage::getUrl('WorldpayJsonCw/Externalcheckout/registerPost', array('_secure'=>true));
++		return Mage::getUrl('worldpayjsoncw/Externalcheckout/registerPost', array('_secure'=>true));
  	}
  	
  	public function isAllowedGuestCheckout()
 diff --git a/app/code/local/Customweb/WorldpayJsonCw/Block/Form.php b/app/code/local/Customweb/WorldpayJsonCw/Block/Form.php
-index ce8fcc0..9fcb03b 100644
+index d3d40fd..c6978cb 100644
 --- a/app/code/local/Customweb/WorldpayJsonCw/Block/Form.php
 +++ b/app/code/local/Customweb/WorldpayJsonCw/Block/Form.php
 @@ -86,25 +86,25 @@ class Customweb_WorldpayJsonCw_Block_Form extends Mage_Payment_Block_Form {
  	}
  
  	public function getProcessUrl(){
--		return Mage::getUrl('worldpayjsoncw/process/process', array(
-+		return Mage::getUrl('WorldpayJsonCw/process/process', array(
+-		return Mage::getUrl('WorldpayJsonCw/process/process', array(
++		return Mage::getUrl('worldpayjsoncw/process/process', array(
  			'_secure' => true
  		));
  	}
  
  	public function getJavascriptUrl(){
--		return Mage::getUrl('worldpayjsoncw/process/ajax', array(
-+		return Mage::getUrl('WorldpayJsonCw/process/ajax', array(
+-		return Mage::getUrl('WorldpayJsonCw/process/ajax', array(
++		return Mage::getUrl('worldpayjsoncw/process/ajax', array(
  			'_secure' => true
  		));
  	}
  
  	public function getHiddenFieldsUrl(){
--		return Mage::getUrl('worldpayjsoncw/process/getHiddenFields', array(
-+		return Mage::getUrl('WorldpayJsonCw/process/getHiddenFields', array(
+-		return Mage::getUrl('WorldpayJsonCw/process/getHiddenFields', array(
++		return Mage::getUrl('worldpayjsoncw/process/getHiddenFields', array(
  			'_secure' => true
  		));
  	}
  
  	public function getVisibleFieldsUrl(){
--		return Mage::getUrl('worldpayjsoncw/process/getVisibleFields', array(
-+		return Mage::getUrl('WorldpayJsonCw/process/getVisibleFields', array(
+-		return Mage::getUrl('WorldpayJsonCw/process/getVisibleFields', array(
++		return Mage::getUrl('worldpayjsoncw/process/getVisibleFields', array(
  			'_secure' => true
  		));
  	}
 diff --git a/app/code/local/Customweb/WorldpayJsonCw/Model/ConfigurationAdapter.php b/app/code/local/Customweb/WorldpayJsonCw/Model/ConfigurationAdapter.php
-index c8ce27c..a1384b0 100644
+index a1384b0..c8ce27c 100644
 --- a/app/code/local/Customweb/WorldpayJsonCw/Model/ConfigurationAdapter.php
 +++ b/app/code/local/Customweb/WorldpayJsonCw/Model/ConfigurationAdapter.php
 @@ -95,7 +95,7 @@ class Customweb_WorldpayJsonCw_Model_ConfigurationAdapter implements Customweb_P
  
  	public function getDefaultTemplateUrl()
  	{
--		$url = Mage::getUrl('worldpayjsoncw/checkout/template', array(
-+		$url = Mage::getUrl('WorldpayJsonCw/checkout/template', array(
+-		$url = Mage::getUrl('WorldpayJsonCw/checkout/template', array(
++		$url = Mage::getUrl('worldpayjsoncw/checkout/template', array(
  			'_secure' => true,
  			'_store' => self::$storeId,
  			'_store_to_url' => true
 diff --git a/app/code/local/Customweb/WorldpayJsonCw/Model/EndpointAdapter.php b/app/code/local/Customweb/WorldpayJsonCw/Model/EndpointAdapter.php
-index 8ef2067..396908d 100644
+index 396908d..8ef2067 100644
 --- a/app/code/local/Customweb/WorldpayJsonCw/Model/EndpointAdapter.php
 +++ b/app/code/local/Customweb/WorldpayJsonCw/Model/EndpointAdapter.php
 @@ -9,7 +9,7 @@
  class Customweb_WorldpayJsonCw_Model_EndpointAdapter extends Customweb_Payment_Endpoint_AbstractAdapter
  {
  	protected function getBaseUrl() {
--		return Mage::getUrl('worldpayjsoncw/endpoint/index', array('_store' => Customweb_WorldpayJsonCw_Model_ConfigurationAdapter::getStoreId()));
-+		return Mage::getUrl('WorldpayJsonCw/endpoint/index', array('_store' => Customweb_WorldpayJsonCw_Model_ConfigurationAdapter::getStoreId()));
+-		return Mage::getUrl('WorldpayJsonCw/endpoint/index', array('_store' => Customweb_WorldpayJsonCw_Model_ConfigurationAdapter::getStoreId()));
++		return Mage::getUrl('worldpayjsoncw/endpoint/index', array('_store' => Customweb_WorldpayJsonCw_Model_ConfigurationAdapter::getStoreId()));
  	}
  	
  	protected function getControllerQueryKey() {
 diff --git a/app/code/local/Customweb/WorldpayJsonCw/Model/ExternalCheckoutService.php b/app/code/local/Customweb/WorldpayJsonCw/Model/ExternalCheckoutService.php
-index 57cbc7a..8f5005e 100644
+index 8f5005e..57cbc7a 100644
 --- a/app/code/local/Customweb/WorldpayJsonCw/Model/ExternalCheckoutService.php
 +++ b/app/code/local/Customweb/WorldpayJsonCw/Model/ExternalCheckoutService.php
 @@ -174,7 +174,7 @@ class Customweb_WorldpayJsonCw_Model_ExternalCheckoutService implements Customwe
  		$context->setAuthenticationSuccessUrl($successUrl);
  		$context->save();
  
--		return Customweb_Core_Http_Response::redirect(Mage::getUrl('worldpayjsoncw/Externalcheckout/login', array(
-+		return Customweb_Core_Http_Response::redirect(Mage::getUrl('WorldpayJsonCw/Externalcheckout/login', array(
+-		return Customweb_Core_Http_Response::redirect(Mage::getUrl('WorldpayJsonCw/Externalcheckout/login', array(
++		return Customweb_Core_Http_Response::redirect(Mage::getUrl('worldpayjsoncw/Externalcheckout/login', array(
  			'_secure' => true
  		)));
  	}
 diff --git a/app/code/local/Customweb/WorldpayJsonCw/Model/Method.php b/app/code/local/Customweb/WorldpayJsonCw/Model/Method.php
-index 0ee8df6..d059930 100644
+index 5fabc5f..a441ab3 100644
 --- a/app/code/local/Customweb/WorldpayJsonCw/Model/Method.php
 +++ b/app/code/local/Customweb/WorldpayJsonCw/Model/Method.php
 @@ -849,7 +849,7 @@ abstract class Customweb_WorldpayJsonCw_Model_Method extends Mage_Payment_Model_
  		$secretHash = $this->getHelper()->hash($transactionId);
  
  		if ($adapter instanceof Customweb_Payment_Authorization_PaymentPage_IAdapter) {
--			return Mage::getUrl('worldpayjsoncw/process/ppRedirect',
-+			return Mage::getUrl('WorldpayJsonCw/process/ppRedirect',
+-			return Mage::getUrl('WorldpayJsonCw/process/ppRedirect',
++			return Mage::getUrl('worldpayjsoncw/process/ppRedirect',
  					array(
  						'transaction_id' => $transactionId,
  						'secret' => $secretHash,
@@ -157,8 +157,8 @@ index 0ee8df6..d059930 100644
  		}
  		elseif ($adapter instanceof Customweb_Payment_Authorization_Iframe_IAdapter ||
  				 $adapter instanceof Customweb_Payment_Authorization_Widget_IAdapter) {
--			return Mage::getUrl('worldpayjsoncw/checkout/pay',
-+			return Mage::getUrl('WorldpayJsonCw/checkout/pay',
+-			return Mage::getUrl('WorldpayJsonCw/checkout/pay',
++			return Mage::getUrl('worldpayjsoncw/checkout/pay',
  					array(
  						'transaction_id' => $transactionId,
  						'secret' => $secretHash,
@@ -166,23 +166,23 @@ index 0ee8df6..d059930 100644
  					));
  		}
  		else {
--			return Mage::getUrl('worldpayjsoncw/process/dummy', array(
-+			return Mage::getUrl('WorldpayJsonCw/process/dummy', array(
+-			return Mage::getUrl('WorldpayJsonCw/process/dummy', array(
++			return Mage::getUrl('worldpayjsoncw/process/dummy', array(
  				'_secure' => true
  			));
  		}
 diff --git a/app/code/local/Customweb/WorldpayJsonCw/Model/TransactionContext.php b/app/code/local/Customweb/WorldpayJsonCw/Model/TransactionContext.php
-index c814402..182aa47 100644
+index 182aa47..c814402 100644
 --- a/app/code/local/Customweb/WorldpayJsonCw/Model/TransactionContext.php
 +++ b/app/code/local/Customweb/WorldpayJsonCw/Model/TransactionContext.php
 @@ -55,8 +55,8 @@ class Customweb_WorldpayJsonCw_Model_TransactionContext implements Customweb_Pay
  		$this->backendFailUrl = $backendFailUrl;
  		$this->storeId = $storeId;
  		$this->aliasTransactionId = $aliasTransactionId;
--		$this->successUrl = $this->appendNonTrackingParameter(Mage::getUrl('worldpayjsoncw/process/success', $this->getUrlParameters()));
--		$this->failedUrl = $this->appendNonTrackingParameter(Mage::getUrl('worldpayjsoncw/process/fail', $this->getUrlParameters()));
-+		$this->successUrl = $this->appendNonTrackingParameter(Mage::getUrl('WorldpayJsonCw/process/success', $this->getUrlParameters()));
-+		$this->failedUrl = $this->appendNonTrackingParameter(Mage::getUrl('WorldpayJsonCw/process/fail', $this->getUrlParameters()));
+-		$this->successUrl = $this->appendNonTrackingParameter(Mage::getUrl('WorldpayJsonCw/process/success', $this->getUrlParameters()));
+-		$this->failedUrl = $this->appendNonTrackingParameter(Mage::getUrl('WorldpayJsonCw/process/fail', $this->getUrlParameters()));
++		$this->successUrl = $this->appendNonTrackingParameter(Mage::getUrl('worldpayjsoncw/process/success', $this->getUrlParameters()));
++		$this->failedUrl = $this->appendNonTrackingParameter(Mage::getUrl('worldpayjsoncw/process/fail', $this->getUrlParameters()));
  	}
  
  	public function __sleep() {
@@ -190,8 +190,8 @@ index c814402..182aa47 100644
  
  	public function getUpdateUrl()
  	{
--		return Mage::getUrl('worldpayjsoncw/process/update', array(
-+		return Mage::getUrl('WorldpayJsonCw/process/update', array(
+-		return Mage::getUrl('WorldpayJsonCw/process/update', array(
++		return Mage::getUrl('worldpayjsoncw/process/update', array(
  			'_secure' => true,
  			'_store' => $this->getOrderContext()->getStore()->getId()
  		));
@@ -199,8 +199,8 @@ index c814402..182aa47 100644
  
  	public function getBackendSuccessUrl()
  	{
--		return Mage::getUrl('worldpayjsoncw/process/motoSuccess', array(
-+		return Mage::getUrl('WorldpayJsonCw/process/motoSuccess', array(
+-		return Mage::getUrl('WorldpayJsonCw/process/motoSuccess', array(
++		return Mage::getUrl('worldpayjsoncw/process/motoSuccess', array(
  			'_secure' => true,
  			'_store' => $this->getOrderContext()->getStore()->getId()
  		));
@@ -208,8 +208,8 @@ index c814402..182aa47 100644
  
  	public function getBackendFailedUrl()
  	{
--		return Mage::getUrl('worldpayjsoncw/process/motoFail', array(
-+		return Mage::getUrl('WorldpayJsonCw/process/motoFail', array(
+-		return Mage::getUrl('WorldpayJsonCw/process/motoFail', array(
++		return Mage::getUrl('worldpayjsoncw/process/motoFail', array(
  			'_secure' => true,
  			'_store' => $this->getOrderContext()->getStore()->getId()
  		));
@@ -217,49 +217,42 @@ index c814402..182aa47 100644
  	private function getProcessUrl()
  	{
  		if ($this->processUrl == null) {
--			$this->processUrl = $this->appendNonTrackingParameter(Mage::getUrl('worldpayjsoncw/process/process', $this->getUrlParameters()));
-+			$this->processUrl = $this->appendNonTrackingParameter(Mage::getUrl('WorldpayJsonCw/process/process', $this->getUrlParameters()));
+-			$this->processUrl = $this->appendNonTrackingParameter(Mage::getUrl('WorldpayJsonCw/process/process', $this->getUrlParameters()));
++			$this->processUrl = $this->appendNonTrackingParameter(Mage::getUrl('worldpayjsoncw/process/process', $this->getUrlParameters()));
  		}
  		return $this->processUrl;
  	}
  
  	public function getIframeBreakOutUrl()
  	{
--		return Mage::getUrl('worldpayjsoncw/checkout/breakout', $this->getUrlParameters());
-+		return Mage::getUrl('WorldpayJsonCw/checkout/breakout', $this->getUrlParameters());
+-		return Mage::getUrl('WorldpayJsonCw/checkout/breakout', $this->getUrlParameters());
++		return Mage::getUrl('worldpayjsoncw/checkout/breakout', $this->getUrlParameters());
  	}
  
  	/**
 diff --git a/app/code/local/Customweb/WorldpayJsonCw/controllers/CheckoutController.php b/app/code/local/Customweb/WorldpayJsonCw/controllers/CheckoutController.php
-index cef5d3d..16cabc4 100644
+index 16cabc4..5afaea0 100644
 --- a/app/code/local/Customweb/WorldpayJsonCw/controllers/CheckoutController.php
 +++ b/app/code/local/Customweb/WorldpayJsonCw/controllers/CheckoutController.php
 @@ -32,7 +32,7 @@ class Customweb_WorldpayJsonCw_CheckoutController extends Customweb_WorldpayJson
  			$redirectionUrl = Customweb_Util_Url::appendParameters($transaction->getTransactionObject()->getTransactionContext()->getFailedUrl(), $transaction->getTransactionObject()->getTransactionContext()->getCustomParameters());
  		} else {
  
--			$redirectionUrl = Mage::getUrl('worldpayjsoncw/process/success', array('transaction_id' => $transaction->getTransactionId(), '_secure' => true));
-+			$redirectionUrl = Mage::getUrl('WorldpayJsonCw/process/success', array('transaction_id' => $transaction->getTransactionId(), '_secure' => true));
+-			$redirectionUrl = Mage::getUrl('WorldpayJsonCw/process/success', array('transaction_id' => $transaction->getTransactionId(), '_secure' => true));
++			$redirectionUrl = Mage::getUrl('worldpayjsoncw/process/success', array('transaction_id' => $transaction->getTransactionId(), '_secure' => true));
  		}
  
  		$html =
-@@ -115,4 +115,4 @@ class Customweb_WorldpayJsonCw_CheckoutController extends Customweb_WorldpayJson
- 
- 		$this->renderLayout();
- 	}
--}
-+}
-\ No newline at end of file
 diff --git a/app/code/local/Customweb/WorldpayJsonCw/etc/config.xml b/app/code/local/Customweb/WorldpayJsonCw/etc/config.xml
-index de34822..b33ca1b 100644
+index 7dcd677..d0cd34a 100644
 --- a/app/code/local/Customweb/WorldpayJsonCw/etc/config.xml
 +++ b/app/code/local/Customweb/WorldpayJsonCw/etc/config.xml
 @@ -259,7 +259,7 @@
  
  	<frontend>
  		<secure_url>
--			<worldpayjsoncw>/worldpayjsoncw/</worldpayjsoncw>
-+			<worldpayjsoncw>/WorldpayJsonCw/</worldpayjsoncw>
+-			<worldpayjsoncw>/WorldpayJsonCw/</worldpayjsoncw>
++			<worldpayjsoncw>/worldpayjsoncw/</worldpayjsoncw>
  		</secure_url>
  		<blocks>
  			<WorldpayJsonCw>
@@ -267,29 +260,29 @@ index de34822..b33ca1b 100644
  			</updates>
  		</layout>
  		<routers>
--			<worldpayjsoncw>
-+			<WorldpayJsonCw>
+-			<WorldpayJsonCw>
++			<worldpayjsoncw>
  				<use>standard</use>
  				<args>
  					<module>Customweb_WorldpayJsonCw</module>
--					<frontName>worldpayjsoncw</frontName>
-+					<frontName>WorldpayJsonCw</frontName>
+-					<frontName>WorldpayJsonCw</frontName>
++					<frontName>worldpayjsoncw</frontName>
  				</args>
--			</worldpayjsoncw>
-+			</WorldpayJsonCw>
+-			</WorldpayJsonCw>
++			</worldpayjsoncw>
  		</routers>
  		
  		<translate>
 diff --git a/app/design/adminhtml/default/default/template/customweb/worldpayjsoncw/info.phtml b/app/design/adminhtml/default/default/template/customweb/worldpayjsoncw/info.phtml
-index a595990..5d093f4 100644
+index 5d093f4..a595990 100644
 --- a/app/design/adminhtml/default/default/template/customweb/worldpayjsoncw/info.phtml
 +++ b/app/design/adminhtml/default/default/template/customweb/worldpayjsoncw/info.phtml
 @@ -30,7 +30,7 @@ try {
  		
  		if ($transaction->getTransactionObject()->isUpdatable()) {
  			$output .= '
--				<form action="' . $this->getInfo()->getOrder()->getStore()->getUrl('worldpayjsoncw/process/pullUpdate', array(
-+				<form action="' . $this->getInfo()->getOrder()->getStore()->getUrl('WorldpayJsonCw/process/pullUpdate', array(
+-				<form action="' . $this->getInfo()->getOrder()->getStore()->getUrl('WorldpayJsonCw/process/pullUpdate', array(
++				<form action="' . $this->getInfo()->getOrder()->getStore()->getUrl('worldpayjsoncw/process/pullUpdate', array(
  				'_secure' => true
  			)) . '" method="post">
  					<input type="hidden" name="backUrl" value="' . Mage::helper('core/url')->getCurrentUrl() . '" />
