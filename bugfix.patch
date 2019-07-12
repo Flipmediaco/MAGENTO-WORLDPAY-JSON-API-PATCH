@@ -1,0 +1,86 @@
+diff --git a/app/code/local/Customweb/WorldpayJsonCw/Model/TransactionHandler.php b/app/code/local/Customweb/WorldpayJsonCw/Model/TransactionHandler.php
+index 27234c7..6840465 100644
+--- a/app/code/local/Customweb/WorldpayJsonCw/Model/TransactionHandler.php
++++ b/app/code/local/Customweb/WorldpayJsonCw/Model/TransactionHandler.php
+@@ -66,7 +66,7 @@ class Customweb_WorldpayJsonCw_Model_TransactionHandler extends Mage_Core_Model_
+ 	public function findTransactionByPaymentId($paymentId, $useCache = true) {
+ 		$transaction = $this->loadTransaction($paymentId, 'payment_id', $useCache);
+ 		if ($transaction == null) {
+-			throw new Exception("Transaction could not be loaded by payment id.");
++			throw new Exception("Transaction could not be loaded by payment id: " . $paymentId);
+ 		} else {
+ 			return $transaction->getTransactionObject();
+ 		}
+diff --git a/lib/Customweb/Core/Http/ContextRequest.php b/lib/Customweb/Core/Http/ContextRequest.php
+index e89c48c..39e7489 100644
+--- a/lib/Customweb/Core/Http/ContextRequest.php
++++ b/lib/Customweb/Core/Http/ContextRequest.php
+@@ -113,7 +113,7 @@ class Customweb_Core_Http_ContextRequest implements Customweb_Core_Http_IRequest
+ 
+ 	public function getRemoteAddress(){
+ 		if (self::$remoteIpAddress === null) {
+-			self::$remoteIpAddress = self::getClientIPAddress();
++			self::$remoteIpAddress = self::getClientIPAddressV6();
+ 		}
+ 		
+ 		return self::$remoteIpAddress;
+@@ -278,7 +278,7 @@ class Customweb_Core_Http_ContextRequest implements Customweb_Core_Http_IRequest
+ 				}
+ 			}
+ 		}
+-		throw new Exception("Unable to retrieve the client IP address.");
++		throw new Exception("Unable to retrieve the client IPv4 address.");
+ 	}
+ 
+ 	/**
+@@ -309,6 +309,6 @@ class Customweb_Core_Http_ContextRequest implements Customweb_Core_Http_IRequest
+ 				}
+ 			}
+ 		}
+-		throw new Exception("Unable to retrieve the client IP address.");
++		throw new Exception("Unable to retrieve the client IPv6 address.");
+ 	}
+-}
+\ No newline at end of file
++}
+diff --git a/lib/Customweb/Core/Util/System.php b/lib/Customweb/Core/Util/System.php
+index 880ec59..230584a 100644
+--- a/lib/Customweb/Core/Util/System.php
++++ b/lib/Customweb/Core/Util/System.php
+@@ -80,7 +80,7 @@ final class Customweb_Core_Util_System {
+ 	 * @return string
+ 	 */
+ 	public static function getClientIPAddress(){
+-		return Customweb_Core_Http_ContextRequest::getClientIPAddress();
++		return Customweb_Core_Http_ContextRequest::getClientIPAddressV6();
+ 	}
+ 
+ 	/**
+@@ -217,4 +217,4 @@ final class Customweb_Core_Util_System {
+ 		
+ 	}
+ 
+-}
+\ No newline at end of file
++}
+diff --git a/lib/Customweb/WorldpayJson/Endpoint/Webhook.php b/lib/Customweb/WorldpayJson/Endpoint/Webhook.php
+index 6955841..34d47b4 100644
+--- a/lib/Customweb/WorldpayJson/Endpoint/Webhook.php
++++ b/lib/Customweb/WorldpayJson/Endpoint/Webhook.php
+@@ -51,6 +51,16 @@ class Customweb_WorldpayJson_Endpoint_Webhook extends Customweb_WorldpayJson_End
+ 	public function getTransactionId(Customweb_Core_Http_IRequest $request){
+ 		$json = json_decode($request->getBody(), true);
+ 		if (isset($json['orderCode'])) {
++		
++			// If dummy send 200 OK
++			// Required so WorldPay will send Webhook requests
++			// 500 response on test means no webhook requests are sent
++			if (substr($json['orderCode'],0,5) == "dummy") {
++				$response = new Customweb_Core_Http_Response();
++				$response->setStatusCode(200)->setStatusMessage('')->send();
++				exit();
++			}
++		
+ 			return array(
+ 				'id' => $json['orderCode'],
+ 				'key' => Customweb_Payment_Endpoint_Annotation_ExtractionMethod::PAYMENT_ID_KEY 
