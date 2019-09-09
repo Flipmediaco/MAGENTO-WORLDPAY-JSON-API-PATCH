@@ -1,5 +1,17 @@
+From bbba4029b8ef74f78c2dff39b4107d6758663065 Mon Sep 17 00:00:00 2001
+From: Laurie Barker <laurie@flipmedia.co.uk>
+Date: Mon, 9 Sep 2019 17:33:44 +0100
+Subject: [PATCH] Apply Bug Fix
+
+---
+ .../WorldpayJsonCw/Model/TransactionHandler.php        |  2 +-
+ lib/Customweb/Core/Http/ContextRequest.php             |  2 +-
+ lib/Customweb/Core/Util/System.php                     |  4 ++--
+ lib/Customweb/WorldpayJson/Endpoint/Webhook.php        | 10 ++++++++++
+ 4 files changed, 14 insertions(+), 4 deletions(-)
+
 diff --git a/app/code/local/Customweb/WorldpayJsonCw/Model/TransactionHandler.php b/app/code/local/Customweb/WorldpayJsonCw/Model/TransactionHandler.php
-index 27234c7..6840465 100644
+index 27234c7cd..68404657d 100644
 --- a/app/code/local/Customweb/WorldpayJsonCw/Model/TransactionHandler.php
 +++ b/app/code/local/Customweb/WorldpayJsonCw/Model/TransactionHandler.php
 @@ -66,7 +66,7 @@ class Customweb_WorldpayJsonCw_Model_TransactionHandler extends Mage_Core_Model_
@@ -12,7 +24,7 @@ index 27234c7..6840465 100644
  			return $transaction->getTransactionObject();
  		}
 diff --git a/lib/Customweb/Core/Http/ContextRequest.php b/lib/Customweb/Core/Http/ContextRequest.php
-index e89c48c..39e7489 100644
+index 978dac181..615818c69 100644
 --- a/lib/Customweb/Core/Http/ContextRequest.php
 +++ b/lib/Customweb/Core/Http/ContextRequest.php
 @@ -113,7 +113,7 @@ class Customweb_Core_Http_ContextRequest implements Customweb_Core_Http_IRequest
@@ -24,27 +36,8 @@ index e89c48c..39e7489 100644
  		}
  		
  		return self::$remoteIpAddress;
-@@ -278,7 +278,7 @@ class Customweb_Core_Http_ContextRequest implements Customweb_Core_Http_IRequest
- 				}
- 			}
- 		}
--		throw new Exception("Unable to retrieve the client IP address.");
-+		throw new Exception("Unable to retrieve the client IPv4 address.");
- 	}
- 
- 	/**
-@@ -309,6 +309,6 @@ class Customweb_Core_Http_ContextRequest implements Customweb_Core_Http_IRequest
- 				}
- 			}
- 		}
--		throw new Exception("Unable to retrieve the client IP address.");
-+		throw new Exception("Unable to retrieve the client IPv6 address.");
- 	}
--}
-\ No newline at end of file
-+}
 diff --git a/lib/Customweb/Core/Util/System.php b/lib/Customweb/Core/Util/System.php
-index 880ec59..230584a 100644
+index 880ec59d2..230584a14 100644
 --- a/lib/Customweb/Core/Util/System.php
 +++ b/lib/Customweb/Core/Util/System.php
 @@ -80,7 +80,7 @@ final class Customweb_Core_Util_System {
@@ -64,14 +57,14 @@ index 880ec59..230584a 100644
 \ No newline at end of file
 +}
 diff --git a/lib/Customweb/WorldpayJson/Endpoint/Webhook.php b/lib/Customweb/WorldpayJson/Endpoint/Webhook.php
-index 6955841..34d47b4 100644
+index 6955841cd..81d8e17c9 100644
 --- a/lib/Customweb/WorldpayJson/Endpoint/Webhook.php
 +++ b/lib/Customweb/WorldpayJson/Endpoint/Webhook.php
 @@ -51,6 +51,16 @@ class Customweb_WorldpayJson_Endpoint_Webhook extends Customweb_WorldpayJson_End
  	public function getTransactionId(Customweb_Core_Http_IRequest $request){
  		$json = json_decode($request->getBody(), true);
  		if (isset($json['orderCode'])) {
-+		
++
 +			// If dummy send 200 OK
 +			// Required so WorldPay will send Webhook requests
 +			// 500 response on test means no webhook requests are sent
@@ -80,7 +73,10 @@ index 6955841..34d47b4 100644
 +				$response->setStatusCode(200)->setStatusMessage('')->send();
 +				exit();
 +			}
-+		
++
  			return array(
  				'id' => $json['orderCode'],
  				'key' => Customweb_Payment_Endpoint_Annotation_ExtractionMethod::PAYMENT_ID_KEY 
+-- 
+2.20.1 (Apple Git-117)
+
