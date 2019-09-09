@@ -1,5 +1,4 @@
 From bbba4029b8ef74f78c2dff39b4107d6758663065 Mon Sep 17 00:00:00 2001
-From: Laurie Barker <laurie@flipmedia.co.uk>
 Date: Mon, 9 Sep 2019 17:33:44 +0100
 Subject: [PATCH] Apply Bug Fix
 
@@ -80,3 +79,58 @@ index 6955841cd..81d8e17c9 100644
 -- 
 2.20.1 (Apple Git-117)
 
+From d8ecd0269afea6e73497ddad4b46b7ba53fc3738 Mon Sep 17 00:00:00 2001
+Date: Mon, 9 Sep 2019 19:20:38 +0100
+Subject: [PATCH 3/3] Patch ip issue with WorldPay
+
+---
+ lib/Customweb/Core/Http/ContextRequest.php | 8 +++++---
+ lib/Customweb/Core/Util/System.php         | 2 +-
+ 2 files changed, 6 insertions(+), 4 deletions(-)
+
+diff --git a/lib/Customweb/Core/Http/ContextRequest.php b/lib/Customweb/Core/Http/ContextRequest.php
+index 615818c..c02572f 100644
+--- a/lib/Customweb/Core/Http/ContextRequest.php
++++ b/lib/Customweb/Core/Http/ContextRequest.php
+@@ -113,7 +113,7 @@ class Customweb_Core_Http_ContextRequest implements Customweb_Core_Http_IRequest
+ 
+ 	public function getRemoteAddress(){
+ 		if (self::$remoteIpAddress === null) {
+-			self::$remoteIpAddress = self::getClientIPAddressV6();
++			self::$remoteIpAddress = self::getClientIPAddress();
+ 		}
+ 		
+ 		return self::$remoteIpAddress;
+@@ -278,7 +278,9 @@ class Customweb_Core_Http_ContextRequest implements Customweb_Core_Http_IRequest
+ 				}
+ 			}
+ 		}
+-		throw new Exception("Unable to retrieve the client IPv4 address.");
++		
++		// If fails to retrive ipv4 - attempt v6
++		return self::getClientIPAddressV6();
+ 	}
+ 
+ 	/**
+@@ -311,4 +313,4 @@ class Customweb_Core_Http_ContextRequest implements Customweb_Core_Http_IRequest
+ 		}
+ 		throw new Exception("Unable to retrieve the client IPv6 address.");
+ 	}
+-}
+\ No newline at end of file
++}
+diff --git a/lib/Customweb/Core/Util/System.php b/lib/Customweb/Core/Util/System.php
+index 230584a..9d4816d 100644
+--- a/lib/Customweb/Core/Util/System.php
++++ b/lib/Customweb/Core/Util/System.php
+@@ -80,7 +80,7 @@ final class Customweb_Core_Util_System {
+ 	 * @return string
+ 	 */
+ 	public static function getClientIPAddress(){
+-		return Customweb_Core_Http_ContextRequest::getClientIPAddressV6();
++		return Customweb_Core_Http_ContextRequest::getClientIPAddress();
+ 	}
+ 
+ 	/**
+-- 
+2.7.4
